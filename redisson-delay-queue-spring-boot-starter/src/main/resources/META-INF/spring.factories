@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.photowey.redisson.delay.queue.spring.boot.starter.config.RedissonDelayqueueStarterConfigure
