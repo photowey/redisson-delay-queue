@@ -195,7 +195,4 @@ public class DefaultRedissonDelayedQueueManager implements RedissonDelayedQueueM
         String taskSet = this.redissonProperties().delayed().registry().taskSet();
         return this.redisson().getSetCache(taskSet).remove(taskId);
     }
-
-    // ----------------------------------------------------------------
-
 }

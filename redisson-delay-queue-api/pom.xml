@@ -23,6 +23,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>io.github.photowey</groupId>
+            <artifactId>spring-project-infras-common</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

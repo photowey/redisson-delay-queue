@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  */
 public abstract class AbstractRedissonDelayqueueStarterConfigure {
 
-    @Bean
+    @Bean("io.github.photowey.redisson.delay.queue.api.property.RedissonProperties")
     public RedissonProperties redissonProperties(Environment environment) {
         return bind(environment, RedissonProperties.getPrefix(), RedissonProperties.class);
     }
