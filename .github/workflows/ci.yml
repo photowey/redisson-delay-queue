@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Java CI with Maven and Redis5.x
 
 on:
   push:
@@ -18,7 +18,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+
+    services:
+      redis:
+        image: redis:5.0.14
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
+
     env:
       MAVEN_REPO_PATH: "/home/runner/m2/repository"
 
@@ -42,6 +49,13 @@ jobs:
             xsi:schemaLocation=\"http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd\">
             <localRepository>/home/runner/m2/repository</localRepository>
           </settings>" > /home/runner/m2/settings.xml
+
+      - name: Install Redis CLI
+        run: sudo apt-get update && sudo apt-get install -y redis-tools
+
+      - name: Check if Redis is running
+        run: |
+          redis-cli ping
 
       - name: Deploy with Maven
         run: mvn clean -DskipTests source:jar deploy

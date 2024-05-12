@@ -6,17 +6,18 @@
 
     <parent>
         <groupId>io.github.photowey</groupId>
-        <artifactId>redisson-delay-queue</artifactId>
+        <artifactId>redisson-delay-queue-tests</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>redisson-delay-queue-core</artifactId>
-    <description>The common core module of redisson-delay-queue.</description>
+    <artifactId>redisson-delay-queue-spring-boot3-test</artifactId>
+    <description>The Spring Boot v3 test module of redisson-delay-queue-tests.</description>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.install.skip>true</maven.install.skip>
+    </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-        </dependency>
     </dependencies>
 </project>
