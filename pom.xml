@@ -118,6 +118,11 @@
 
             <dependency>
                 <groupId>io.github.photowey</groupId>
+                <artifactId>spring-project-infras-common</artifactId>
+                <version>${spring-project-infras.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.photowey</groupId>
                 <artifactId>spring-project-infras-core</artifactId>
                 <version>${spring-project-infras.version}</version>
             </dependency>
