@@ -1,0 +1,43 @@
+server:
+  port: 7923
+
+spring:
+  application:
+    name: "redisson-delay-queue-spring-boot3-test"
+  profiles:
+    active: dev
+  redis:
+    host: ${local.config.redis.host}
+    port: ${local.config.redis.port}
+    password: ${local.config.redis.password}
+    database: 0
+    timeout: 2000
+    redisson:
+      delayqueue:
+        enabled: true
+        mode: SINGLE
+        address: "redis://${local.config.redis.host}:${local.config.redis.port}"
+        password: "${local.config.redis.password}"
+        master: "master"
+        database: 0
+        timeout: 10_000
+        delayed:
+          # 7 DAYS
+          max: 604_800_000
+          topic: "io.github.photowey.global.redisson.delayqueue.topic"
+          topics:
+            - "io.github.photowey.hello.world.delayed.query.delayqueue.topic"
+          ticker:
+            initial-delay: 0
+            period: 5
+            unit: "SECONDS"
+          poll:
+            timeout: 2
+            unit: "SECONDS"
+          registry:
+            topic-set: "io:github:photowey:global:redisson:delayqueue:topicset"
+            task-set: "io:github:photowey:global:redisson:delayqueue:taskset"
+
+logging:
+  pattern:
+    console: '%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %red([${spring.application.name}]) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger) - %cyan(%msg%n)'
