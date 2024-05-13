@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: "redisson-delay-queue-spring-boot-test"
+    name: "redisson-delay-queue-spring-boot3-test"
   profiles:
     active: dev
   redis:

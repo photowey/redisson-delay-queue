@@ -176,7 +176,6 @@ public class RedissonProperties implements Serializable {
 
         // ----------------------------------------------------------------
 
-
         public long getMax() {
             return max;
         }

@@ -20,13 +20,13 @@ import io.github.photowey.redisson.delay.queue.api.manager.RedissonDelayedQueueM
 import io.github.photowey.redisson.delay.queue.api.property.RedissonProperties;
 import io.github.photowey.redisson.delay.queue.core.pair.QueuePair;
 import io.github.photowey.redisson.delay.queue.core.task.RedissonDelayedTask;
+import io.github.photowey.spring.infras.common.hardware.HardwareUtils;
 import jodd.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ThreadFactory;
 
 /**
  * {@code CompositeRedissonDelayedQueueScheduler}
@@ -37,7 +37,7 @@ import java.util.concurrent.ThreadFactory;
  */
 public class CompositeRedissonDelayedQueueScheduler implements RedissonDelayedQueueScheduler {
 
-    private static final int THRESHOLD = 1 << 4;
+    private static final int THRESHOLD = HardwareUtils.getNcpu();
     private static final String SCHEDULER_NAME_TEMPLATE = "redisson-delayqueue-scheduler-%d";
 
     private final RedissonDelayedQueueManager manager;
@@ -50,17 +50,12 @@ public class CompositeRedissonDelayedQueueScheduler implements RedissonDelayedQu
         this.executor = executor;
         this.ticker = Executors.newSingleThreadScheduledExecutor();
 
-        int size = this.topics().size();
-        int threshold = THRESHOLD;
-        if (size < threshold) {
-            threshold = size;
-        }
-
-        ThreadFactory factory = ThreadFactoryBuilder.create()
-                .setNameFormat(SCHEDULER_NAME_TEMPLATE)
-                .get();
-
-        this.scheduler = Executors.newScheduledThreadPool(threshold, factory);
+        this.scheduler = Executors.newScheduledThreadPool(
+                Math.min(this.topics().size(), THRESHOLD),
+                ThreadFactoryBuilder.create()
+                        .setNameFormat(SCHEDULER_NAME_TEMPLATE)
+                        .get()
+        );
     }
 
     // ----------------------------------------------------------------
