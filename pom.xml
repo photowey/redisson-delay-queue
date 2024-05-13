@@ -44,6 +44,7 @@
         <module>redisson-delay-queue-api</module>
         <module>redisson-delay-queue-autoconfigure</module>
         <module>redisson-delay-queue-core</module>
+        <module>redisson-delay-queue-spring-boot3-starter</module>
         <module>redisson-delay-queue-spring-boot-starter</module>
         <module>redisson-delay-queue-tests</module>
     </modules>
@@ -67,6 +68,7 @@
         <maven-versions-plugin.version>2.7</maven-versions-plugin.version>
 
         <spring.version>5.3.23</spring.version>
+        <spring6.version>6.1.5</spring6.version>
         <spring-boot.version>2.7.5</spring-boot.version>
         <spring-boot-v3.version>3.2.4</spring-boot-v3.version>
 
@@ -96,6 +98,11 @@
             <dependency>
                 <groupId>io.github.photowey</groupId>
                 <artifactId>redisson-delay-queue-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.photowey</groupId>
+                <artifactId>redisson-delay-queue-spring-boot3-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
