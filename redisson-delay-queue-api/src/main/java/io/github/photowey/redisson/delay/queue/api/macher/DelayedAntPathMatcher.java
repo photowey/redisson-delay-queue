@@ -32,6 +32,22 @@ public interface DelayedAntPathMatcher {
     String SINGLE_PATH = "*";
     String MULTI_PATH = "**";
 
+    /**
+     * Determines if the given path matches the specified pattern.
+     * <p>
+     * This method first converts the given pattern and path to the Ant expression path format.
+     * The conversion rules are as follows:
+     * 1. If the pattern or path contains a period ('.') or a colon (':'), it will be escaped to a slash ('/').
+     * 2. Supports wildcard characters:
+     * - `#` represents a single word.
+     * - `*` represents multiple words.
+     * <p>
+     * After conversion, the method uses AntPathMatcher to perform the matching.
+     *
+     * @param pattern The pattern to match, supporting wildcard characters and escaping.
+     * @param path    The path to match, supporting wildcard characters and escaping.
+     * @return true if the path matches the pattern; false otherwise.
+     */
     boolean matches(String pattern, String path);
 
     default String toAntPattern(String expression) {

@@ -151,11 +151,12 @@ public class RedissonProperties implements Serializable {
         private long max = Integer.MAX_VALUE;
 
         /**
-         * Default topic.
+         * Default Global topic.
          */
-        private String topic;
+        private String topic = "io.github.photowey.global.redisson.delayqueue.topic";
         /**
          * Support topics.
+         * |- Custom topics
          */
         private Set<String> topics = new HashSet<>();
 
